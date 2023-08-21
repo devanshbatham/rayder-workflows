@@ -1,6 +1,6 @@
 ## Rayder Workflows
 
- Repo for hosting rayder workflows 
+ Repo for hosting rayder workflows. Install [Rayder](https://github.com/devanshbatham/rayder/) from [here](https://github.com/devanshbatham/rayder/)
 
 
 ## Contents
