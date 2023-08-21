@@ -1,4 +1,4 @@
-workflow: xss-scan
+workflow: open-redirect
 parallel: false
 silent: true
 output-dir: results
