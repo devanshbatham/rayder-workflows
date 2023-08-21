@@ -1,0 +1,11 @@
+workflow: xss-scan
+parallel: false
+silent: true
+output-dir: results
+output-file: workflow.log
+steps:
+ step-1: paramspider -d <<DOMAIN>>
+ step-2: cat results/<<DOMAIN>>.txt | grep '=' > results/<<DOMAIN>>-parameters.txt
+ step-3: cat results/<<DOMAIN>>-parameters.txt | openredirex | grep 'FOUND' | tee results/<<DOMAIN>>-open.txt
+ step-4: rm results/<<DOMAIN>>.txt
+ step-5: rm results/<<DOMAIN>>-parameters.txt
