@@ -1,0 +1,11 @@
+workflow: dns-bruteforce-wordlist-gen
+parallel: false
+silent: false
+output-dir: results
+output-file: workflow.log
+steps:
+ step-1: subfinder -d <<DOMAIN>> -silent > results/<<DOMAIN>>-subdomains.txt
+ step-2: cat results/<<DOMAIN>>-subdomains.txt | awk -F'.' '{print $(NF-2)}' > results/<<DOMAIN>>-words.txt
+ step-3: dnsgen results/<<DOMAIN>>-subdomains.txt -w results/<<DOMAIN>>-words.txt > results/<<DOMAIN>>-wordlist.txt
+ step-4: rm results/<<DOMAIN>>-subdomains.txt
+ step-5: rm results/<<DOMAIN>>-words.txt
