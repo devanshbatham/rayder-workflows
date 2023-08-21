@@ -17,9 +17,3 @@
     - Depends on: 
         - [Paramspider](https://github.com/devanshbatham/Paramspider)
         - [Openredirex](https://github.com/devanshbatham/Openredirex)
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
