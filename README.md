@@ -3,17 +3,14 @@
  Repo for hosting rayder workflows. Install [Rayder](https://github.com/devanshbatham/rayder/) from [here](https://github.com/devanshbatham/rayder/)
 
 
-## Contents
+## Workflows
 
 
-### Recon
-- [Generate custom DNS Bruteforce wordlist](https://github.com/devanshbatham/rayder-workflows/blob/main/recon/generate-dns-wordlist.yaml)
-    - Depends on: 
-        - [subfinder](https://github.com/projectdiscovery/subfinder)
-        - [dnsgen](https://github.com/ProjectAnte/dnsgen)
+| Category | Workflow                            | Description                                                | Dependencies                                                  |
+|----------|-------------------------------------|------------------------------------------------------------|---------------------------------------------------------------|
+| Recon    | [generate-dns-wordlist.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/recon/generate-dns-wordlist.yaml) | Generate custom DNS Bruteforce wordlist for any domain name | [subfinder](https://github.com/projectdiscovery/subfinder), [dnsgen](https://github.com/ProjectAnte/dnsgen) |
+| Scanning |  [open-redirect.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/http/open-redirect.yaml)                    | Scan for Open Redirect vulnerabilities in params found in web archive for a domain      | [Paramspider](https://github.com/devanshbatham/Paramspider), [Openredirex](https://github.com/devanshbatham/Openredirex) |
 
-### Scanning
-- [Open Redirect](https://github.com/devanshbatham/rayder-workflows/blob/main/http/open-redirect.yaml)
-    - Depends on: 
-        - [Paramspider](https://github.com/devanshbatham/Paramspider)
-        - [Openredirex](https://github.com/devanshbatham/Openredirex)
+
+
+
