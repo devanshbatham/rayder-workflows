@@ -6,11 +6,9 @@
 ## Workflows
 
 
-| Category | Workflow                            | Description                                                | Dependencies                                                  |
-|----------|-------------------------------------|------------------------------------------------------------|---------------------------------------------------------------|
-| Recon    | [generate-dns-wordlist.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/recon/generate-dns-wordlist.yaml) | Generate custom DNS Bruteforce wordlist for any domain name | [subfinder](https://github.com/projectdiscovery/subfinder), [dnsgen](https://github.com/ProjectAnte/dnsgen) |
-| Scanning |  [open-redirect.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/http/open-redirect.yaml)                    | Scan for Open Redirect vulnerabilities in params found in web archive for a domain      | [Paramspider](https://github.com/devanshbatham/Paramspider), [Openredirex](https://github.com/devanshbatham/Openredirex) |
 
-
-
+| Category | Workflow                            | Description                                                | Placeholder(s) | Dependencies                                                  |
+|----------|-------------------------------------|------------------------------------------------------------|----------------|---------------------------------------------------------------|
+| Recon    | [generate-dns-wordlist.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/recon/generate-dns-wordlist.yaml) | Generate custom DNS Bruteforce wordlist for a domain |  \<\<DOMAIN>> | [subfinder](https://github.com/projectdiscovery/subfinder), [dnsgen](https://github.com/ProjectAnte/dnsgen) |
+| Scanning | [open-redirect.yaml](https://github.com/devanshbatham/rayder-workflows/blob/main/http/open-redirect.yaml) | Scan for Open Redirect vulnerabilities in params found in web archive for a domain |  \<\<DOMAIN>> | [Paramspider](https://github.com/devanshbatham/Paramspider), [Openredirex](https://github.com/devanshbatham/Openredirex) |
 
