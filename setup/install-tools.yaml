@@ -47,3 +47,8 @@ modules:
     cmds: 
       - go install github.com/tomnomnom/qsreplace@latest
     silent: false
+  
+  - name: install-dnsgen
+    cmds: 
+      - pip3 install dnsgen
+    silent: false
