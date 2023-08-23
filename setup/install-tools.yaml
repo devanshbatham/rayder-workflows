@@ -32,8 +32,9 @@ modules:
   - name: install-openredirex
     cmds: 
       - git clone https://github.com/devanshbatham/openredirex
-      - sudo chmod +x openredirex/setup.sh
-      - sh openredirex/setup.sh
+      - mv openredirex/openredirex.py openredirex/openredirex 
+      - sudo mv openredirex/openredirex /usr/local/bin/
+      - sudo chmod +x /usr/local/bin/openredirex
       - rm -r openredirex/
     silent: false
 
