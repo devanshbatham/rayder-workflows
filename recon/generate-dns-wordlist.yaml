@@ -6,7 +6,7 @@ modules:
   - name: getting-subdomains
     silent: true
     cmds:
-    	- mkdir -p {{OUTPUT_DIR}}
+      - mkdir -p {{OUTPUT_DIR}}
       - subfinder -d {{DOMAIN}} -silent > {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt
 
   - name: extracting-words
