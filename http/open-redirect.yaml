@@ -6,7 +6,7 @@ modules:
   - name: fetching-urls
     silent: true
     cmds:
-    	- mkdir -p {{OUTPUT_DIR}}
+      - mkdir -p {{OUTPUT_DIR}}
       - paramspider -d {{DOMAIN}}
       - mv results/{{DOMAIN}}.txt {{OUTPUT_DIR}}/{{DOMAIN}}.txt
 
