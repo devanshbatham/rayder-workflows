@@ -1,11 +1,26 @@
-workflow: dns-bruteforce-wordlist-gen
+vars:
+  DOMAIN: ""
+  OUTPUT_DIR: "wordlist-results"
 parallel: false
-silent: false
-output-dir: results
-output-file: workflow.log
-steps:
- step-1: subfinder -d <<DOMAIN>> -silent > results/<<DOMAIN>>-subdomains.txt
- step-2: cat results/<<DOMAIN>>-subdomains.txt | awk -F'.' '{print $(NF-2)}' > results/<<DOMAIN>>-words.txt
- step-3: dnsgen results/<<DOMAIN>>-subdomains.txt -w results/<<DOMAIN>>-words.txt > results/<<DOMAIN>>-wordlist.txt
- step-4: rm results/<<DOMAIN>>-subdomains.txt
- step-5: rm results/<<DOMAIN>>-words.txt
+modules:
+  - name: getting-subdomains
+    silent: true
+    cmds:
+    	- mkdir -p {{OUTPUT_DIR}}
+      - subfinder -d {{DOMAIN}} -silent > {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt
+
+  - name: extracting-words
+    cmds:
+      - cat {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt | awk -F'.' '{print $(NF-2)}' > {{OUTPUT_DIR}}/{{DOMAIN}}-words.txt
+    silent: true
+
+  - name: generating-wordlist-using-dnsgen
+    cmds:
+      -  dnsgen {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt -w {{OUTPUT_DIR}}/{{DOMAIN}}-words.txt > {{OUTPUT_DIR}}/{{DOMAIN}}-wordlist.txt
+    silent: true
+
+  - name: cleaning-temp-files
+    cmds:
+      - rm {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt
+      - rm {{OUTPUT_DIR}}/{{DOMAIN}}-words.txt
+    silent: true
