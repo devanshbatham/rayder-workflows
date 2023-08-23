@@ -1,11 +1,27 @@
-workflow: open-redirect
+vars:
+  DOMAIN: ""
+  OUTPUT_DIR: "open-redirect-results"
 parallel: false
-silent: true
-output-dir: results
-output-file: workflow.log
-steps:
- step-1: paramspider -d <<DOMAIN>>
- step-2: cat results/<<DOMAIN>>.txt | grep '=' > results/<<DOMAIN>>-parameters.txt
- step-3: cat results/<<DOMAIN>>-parameters.txt | openredirex | grep 'FOUND' | tee results/<<DOMAIN>>-open.txt
- step-4: rm results/<<DOMAIN>>.txt
- step-5: rm results/<<DOMAIN>>-parameters.txt
+modules:
+  - name: fetching-urls
+    silent: true
+    cmds:
+    	- mkdir -p {{OUTPUT_DIR}}
+      - paramspider -d {{DOMAIN}}
+      - mv results/{{DOMAIN}}.txt {{OUTPUT_DIR}}/{{DOMAIN}}.txt
+
+  - name: processing-urls
+    cmds:
+      - cat {{OUTPUT_DIR}}/{{DOMAIN}}.txt | grep '=' > {{OUTPUT_DIR}}/{{DOMAIN}}-parameters.txt
+    silent: true
+
+  - name: exeuting-openredirex
+    cmds:
+      -  cat  {{OUTPUT_DIR}}/{{DOMAIN}}-parameters.txt | openredirex | grep 'FOUND' | tee {{OUTPUT_DIR}}/{{DOMAIN}}-open.txt
+    silent: true
+
+  - name: cleaning-temp-files
+    cmds:
+      - rm {{OUTPUT_DIR}}/{{DOMAIN}}-parameters.txt
+      - rm {{OUTPUT_DIR}}/{{DOMAIN}}.txt
+    silent: true
