@@ -1,0 +1,12 @@
+vars:
+  URLS_FILE: "urls.txt"
+  HEADERS_FILE: "headers.txt"
+  OUTPUT_DIR: "headerpwn-results"
+
+parallel: false
+modules:
+  - name: headerpwn
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - xargs -a {{URLS_FILE}} -n 1 -P 10 headerpwn -headers {{HEADERS_FILE}} -q -url | tee {{OUTPUT_DIR}}/headerpwn_results.txt
+    silent: false
