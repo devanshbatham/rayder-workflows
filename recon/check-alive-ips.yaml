@@ -1,6 +1,5 @@
 vars:
   TARGETS_FILE: "targets.txt"
-  PORTS: "80,443"
   OUTPUT_DIR: "masscan-results"
   RATE: "20000"
 
@@ -9,7 +8,7 @@ modules:
   - name: masscan-scan
     cmds:
       - mkdir -p {{OUTPUT_DIR}}
-      - masscan -p{{PORTS}} -iL {{TARGETS_FILE}} -oG {{OUTPUT_DIR}}/masscan_results.txt --rate={{RATE}}
+      - masscan -p80,443 -iL {{TARGETS_FILE}} -oG {{OUTPUT_DIR}}/masscan_results.txt --rate={{RATE}}
     silent: true
   - name: generate-output
     cmds:
