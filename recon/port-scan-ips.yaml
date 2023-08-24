@@ -1,0 +1,22 @@
+vars:
+  TARGETS_FILE: "targets.txt"
+  PORTS: "80,443"
+  OUTPUT_DIR: "masscan-results"
+  RATE: "20000"
+
+parallel: false
+modules:
+  - name: masscan-scan
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - masscan -p{{PORTS}} -iL {{TARGETS_FILE}} -oG {{OUTPUT_DIR}}/masscan_results.txt --rate={{RATE}}
+    silent: true
+  - name: generate-output
+    cmds:
+      - awk -F'\t' '/Ports:.*443\/open/ { split($2, host, " "); print "https://" host[2] } /Ports:.*80\/open/ { split($2, host, " "); print "http://" host[2] }' {{OUTPUT_DIR}}/masscan_results.txt > {{OUTPUT_DIR}}/alive-ips.txt
+      - cat {{OUTPUT_DIR}}/alive-ips.txt
+    silent: true
+  - name: saving-results
+    cmds: 
+     - echo 'Results saved in {{OUTPUT_DIR}}/alive-ips.txt'
+    silent: false
