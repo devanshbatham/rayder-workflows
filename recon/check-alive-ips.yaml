@@ -18,4 +18,5 @@ modules:
   - name: saving-results
     cmds: 
      - echo 'Results saved in {{OUTPUT_DIR}}/alive-ips.txt'
+     - rm {{OUTPUT_DIR}}/masscan_results.txt
     silent: false
