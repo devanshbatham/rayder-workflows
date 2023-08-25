@@ -24,7 +24,7 @@ modules:
   - name: cleaning-massdns-output
     silent: true
     cmds:
-      - awk '{print $1, "[" $3 "]"}' {{OUTPUT_DIR}}/{{DOMAIN}}-unmutated-resolved.txt > {{OUTPUT_DIR}}/{{DOMAIN}}-formatted.txt
+      - awk '{print $1, "[" $3 "]"}' {{OUTPUT_DIR}}/{{DOMAIN}}-unmutated-resolved.txt > {{OUTPUT_DIR}}/{{DOMAIN}}-unmutated-formatted.txt
 
   - name: mutating-subdomains-with-radamsa
     silent: true
