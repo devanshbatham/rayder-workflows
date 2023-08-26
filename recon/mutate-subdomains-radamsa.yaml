@@ -29,7 +29,7 @@ modules:
   - name: mutating-subdomains-with-radamsa
     silent: true
     cmds:
-      - cat {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt | radamsa -n 200 > {{OUTPUT_DIR}}/{{DOMAIN}}-mutated.txt
+      - cat {{OUTPUT_DIR}}/{{DOMAIN}}-subdomains.txt | radamsa -n 200 | sort -u | tee {{OUTPUT_DIR}}/{{DOMAIN}}-mutated.txt
 
   - name: resolving-mutated-subdomains-with-massdns
     silent: true
