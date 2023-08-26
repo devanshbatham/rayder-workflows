@@ -1,0 +1,28 @@
+vars:
+  DOMAIN: "example.tld"
+  OUTPUT_DIR: "crlf-vuln-results"
+
+parallel: false
+
+modules:
+  - name: subdomain-discovery
+    silent: true
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - subfinder -d {{DOMAIN}} -silent | tee {{OUTPUT_DIR}}/subdomains.txt
+
+  - name: http-probing
+    silent: true
+    cmds:
+      - httpx -silent -threads 100 < {{OUTPUT_DIR}}/subdomains.txt | tee {{OUTPUT_DIR}}/http-probe-results.txt
+
+  - name: crlf-vulnerability-check
+    silent: true
+    cmds:
+      - cat {{OUTPUT_DIR}}/http-probe-results.txt | crlfuzz -c 50 -o {{OUTPUT_DIR}}/crlf-vuln-results.txt
+
+  - name: cleaning-temp-files
+    silent: false
+    cmds:
+      - rm {{OUTPUT_DIR}}/subdomains.txt
+      - rm {{OUTPUT_DIR}}/http-probe-results.txt
