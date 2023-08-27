@@ -1,7 +1,8 @@
 #OFJAAAH
 vars:
   DOMAIN: ""
-  OUTPUT_DIR: "results"
+  OUTPUT_DIR: "gau-xss-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
 parallel: false
 modules:
   - name: fetch-urls-from-gau
@@ -20,7 +21,7 @@ modules:
       - cat {{OUTPUT_DIR}}/replaced-urls.txt | httpx -silent -threads 300 -ms '"><svg onload=confirm(1)>' > {{OUTPUT_DIR}}/final-results1.txt
     silent: true
 
-  - name: cler-dup
+  - name: clearing-duplicate-urls
     cmds:
       - cat {{OUTPUT_DIR}}/final-results1.txt | anew {{OUTPUT_DIR}}/final-results.txt
     silent: true  
