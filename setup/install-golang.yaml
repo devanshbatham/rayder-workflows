@@ -1,0 +1,18 @@
+# Use case: rayder -w install-golang.yaml GO_VERSION=<1.21.0 which is latest version or any version number you want>
+
+vars:
+  GO_VERSION: ""
+parallel: false
+modules:
+  - name: Installing Golang latest version
+    silent: false
+    cmds:
+      - sudo apt-get update
+      - wget https://go.dev/dl/go{{GO_VERSION}}.linux-amd64.tar.gz
+      - sudo tar -xvf go{{GO_VERSION}}.linux-amd64.tar.gz
+      - sudo mv go /usr/local/
+      - echo 'export GOROOT=/usr/local/go' >> ~/.profile
+      - echo 'export GOPATH=$HOME/go' >> ~/.profile
+      - echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.profile
+      - source ~/.profile
+      - go version
