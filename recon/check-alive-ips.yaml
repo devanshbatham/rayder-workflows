@@ -2,6 +2,7 @@ vars:
   TARGETS_FILE: "targets.txt"
   OUTPUT_DIR: "masscan-results"
   RATE: "20000"
+  USAGE: "rayder -w workflow.yaml TARGETS_FILE=targets.txt"
 
 parallel: false
 modules:

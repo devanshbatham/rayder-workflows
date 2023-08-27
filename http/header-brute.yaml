@@ -2,6 +2,7 @@ vars:
   URLS_FILE: "urls.txt"
   HEADERS_FILE: "headers.txt"
   OUTPUT_DIR: "headerpwn-results"
+  USAGE: "rayder -w workflow.yaml URLS_FILE=urls.txt HEADERS_FILE=headers.txt"
 
 parallel: false
 modules:

@@ -1,6 +1,7 @@
 vars:
   DOMAIN: "example.tld"
   OUTPUT_DIR: "dns-bruteforce-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
 
 parallel: false
 

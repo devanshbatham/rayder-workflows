@@ -1,6 +1,7 @@
 vars:
   DOMAIN: ""
   OUTPUT_DIR: "open-redirect-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
 parallel: false
 modules:
   - name: fetching-urls

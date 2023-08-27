@@ -1,6 +1,7 @@
 vars:
   DOMAIN: "example.tld"
   OUTPUT_DIR: "crlf-vuln-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
 
 parallel: false
 

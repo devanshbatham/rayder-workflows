@@ -1,6 +1,7 @@
 vars:
   DOMAIN: ""
   OUTPUT_DIR: "wordlist-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
 parallel: false
 modules:
   - name: getting-subdomains
