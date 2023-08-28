@@ -23,7 +23,7 @@ modules:
 
   - name: clearing-duplicate-urls
     cmds:
-      - cat {{OUTPUT_DIR}}/final-results1.txt | sort -u | tee {{OUTPUT_DIR}}/final-results.txt
+      - cat {{OUTPUT_DIR}}/final-results1.txt | sort -u | tee {{OUTPUT_DIR}}/{{DOMAIN}}-results.txt
     silent: true  
 
   - name: cleaning-temp-files-gau
