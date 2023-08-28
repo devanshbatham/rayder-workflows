@@ -1,0 +1,19 @@
+vars:
+  APK: "app.apk"
+  OUTPUT_DIR: "apk-urls"
+  USAGE: "rayder -w workflow.yaml APK=app.apk"
+
+parallel: false
+
+modules:
+
+  - name: decompile-apk
+    silent: false
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - apktool d {{APK}} -o {{OUTPUT_DIR}}/apk-decompiled
+
+  - name: extract-urls
+    silent: false
+    cmds:
+      - grep -roIhE 'http(s)?://[^\s"]+' {{OUTPUT_DIR}}/apk-decompiled | sort -u | while read -r line; do python3 -c "from urllib.parse import urlparse; result = urlparse('$line'); print('$line') if result.scheme and result.netloc else None"; done | tee {{OUTPUT_DIR}}/extracted-urls.txt
