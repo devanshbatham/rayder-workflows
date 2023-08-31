@@ -1,0 +1,21 @@
+vars:
+  DOMAIN: ""
+  OUTPUT_DIR: "takeover-results"
+  USAGE: "rayder -w workflow.yaml DOMAIN=example.tld"
+parallel: false
+modules:
+  - name: getting-subdomains
+    silent: true
+    cmds:
+      - mkdir -p {{OUTPUT_DIR}}
+      - subfinder -d {{DOMAIN}} -silent -all > {{OUTPUT_DIR}}/{{DOMAIN}}-subs.txt
+
+  - name: finding-acquisition
+    cmds:
+      - cat {{OUTPUT_DIR}}/{{DOMAIN}}-subs.txt | nuclei -tags takeover -o {{OUTPUT_DIR}}/{{DOMAIN}}-takeover.txt
+    silent: true
+
+  - name: cleaning-temp-files
+    cmds:
+      - rm {{OUTPUT_DIR}}/{{DOMAIN}}-subs.txt
+    silent: true
